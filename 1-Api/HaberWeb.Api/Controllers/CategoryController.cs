@@ -26,7 +26,13 @@ namespace HaberWeb.Api.Controllers
 			var values = _categoryService.TGetListAll();
 			return Ok(values);
 		}
-		[HttpDelete("{id}")]
+        [HttpGet("{id}")]
+        public IActionResult GetCategory(int id)
+        {
+            var value = _categoryService.TGetByID(id);
+            return Ok(value);
+        }
+        [HttpDelete("{id}")]
 		public IActionResult DeleteCategory(int id)
 		{
 			var values = _categoryService.TGetByID(id);

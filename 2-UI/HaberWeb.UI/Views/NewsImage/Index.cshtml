@@ -1,0 +1,26 @@
+﻿@model List<ResultNewsImageDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<table class="table table-bordered">
+	<tr>
+		<th>Ürün ID</th>
+		<th>Ürün fotoğrafı</th>
+		<th>Sil</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+
+
+		<tr>
+			<td>@item.NewsID</td>
+			<td><img src="https://localhost:7187/@item.Path" alt="" width="109" height="109"></td>
+			<td><a href="/AdminImageProduct/DeleteProductImage/@item.NewsImageID" class="btn mb-1 btn-rounded btn-outline-warning">Görsel Sil</a></td>
+
+		</tr>
+
+	}
+</table>
+

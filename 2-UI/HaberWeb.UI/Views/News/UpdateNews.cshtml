@@ -1,0 +1,59 @@
+﻿@model UpdateNewsDto
+@{
+	ViewData["Title"] = "UpdateNews";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Ürün İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Ürün Güncelleme Sayfası</div>
+						</div>
+						<input type="hidden" asp-for="NewsID" />
+						<div class="card-body">
+							<div class="form-group">
+								<label for="productname">Haber Başlığını Giriniz</label>
+								<input type="text" class="form-control" asp-for="NewsTitle" id="name">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="price">Haber Özetini Giriniz</label>
+								<input type="text" class="form-control" asp-for="NewsSummary" id="price">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="imageurl">Haber İçeriğini Giriniz</label>
+								<textarea class="form-control" asp-for="NewsContent" id="newscontent" rows="4"></textarea>
+							</div>
+						</div>
+@* 						<div class="card-body">
+							<div class="form-group">
+								<label class="form-check-label" for="editorPick">Editörün Seçimi</label>
+								<input type="checkbox" class="form-check-input" asp-for="EditorPick" id="editorPick">
+							</div>
+						</div>
+ *@
+
+						<div class="card-body">
+							<div class="form-group">
+								<label for="price">Haber Kategorisini Seçiniz</label>
+								@Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="card-action">
+							<button class="btn btn-primary">Ürünü Güncelle</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

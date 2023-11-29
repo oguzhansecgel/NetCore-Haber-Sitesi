@@ -9,6 +9,7 @@ namespace DataAccessLayer.Abstract
 {
 	public interface INewsDal : IGenericDal<News>
 	{
-		List<News> GetProductsWithCategory();
+
 	}
+		 
 }

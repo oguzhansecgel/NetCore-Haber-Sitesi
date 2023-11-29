@@ -1,0 +1,62 @@
+﻿@model List<ResultNewsWithCategoryDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Haber İşlemleri</h4>
+		<a href="/News/CreateNews/" class="btn btn-outline-primary">Yeni Haber Girişi</a>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Haber Listesi</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							Haber ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Haber Başlığı</th>
+									<th scope="col">Haber Özeti</th>
+									<th scope="col">Haber İçeriği</th>
+									<th scope="col">Haber Yazılış Saati</th>
+									<th scope="col">Kategorisi</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+									<th scope="col">Başlık Görseli Ekle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									count++;
+									<tr>
+										<th>@count</th>
+										<td>@item.NewsTitle</td>
+										<td>@item.NewsSummary</td>
+										<td>@item.NewsContent</td>
+										<td>@item.NewsEnterTime</td>
+										<td>@item.CategoryName</td>
+										<td><a href="/News/DeleteNews/@item.NewsID" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="/News/UpdateNews/@item.NewsID" class="btn btn-outline-success">Güncelle</a></td>
+										<td><a href="/NewsImage/CreateNewsImage/@item.NewsID" class="btn btn-outline-success">Resim Ekle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

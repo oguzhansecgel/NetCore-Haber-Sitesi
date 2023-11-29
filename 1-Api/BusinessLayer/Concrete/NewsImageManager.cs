@@ -21,7 +21,7 @@ namespace BusinessLayer.Concrete
 		{
 			return _newsImageDal.GetByID(id);
 		}
-
+	 
 		public List<NewsImage> TGetListAll()
 		{
 			return _newsImageDal.GetListAll();
@@ -41,5 +41,7 @@ namespace BusinessLayer.Concrete
 		{
 			_newsImageDal.Update(entity);
 		}
+
+		
 	}
 }

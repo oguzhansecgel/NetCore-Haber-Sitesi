@@ -11,6 +11,7 @@ namespace HaberWeb.Api.AutoMapper
             CreateMap<ResultNewsImageDto, NewsImage>().ReverseMap();
             CreateMap<CreateNewsImageDto, NewsImage>().ReverseMap();
             CreateMap<UpdateNewsImageDto, NewsImage>().ReverseMap();
+            CreateMap<ResultImageWithNews, NewsImage>().ReverseMap();
         }
     }
 }

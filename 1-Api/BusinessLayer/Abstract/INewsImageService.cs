@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
 	public interface INewsImageService : IGenericService<NewsImage>
 	{
+		 
 	}
 }

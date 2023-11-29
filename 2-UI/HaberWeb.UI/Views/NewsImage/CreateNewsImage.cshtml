@@ -1,0 +1,20 @@
+﻿@model CreateNewsImageDto
+@{
+	ViewData["Title"] = "CreateNewsImage";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+
+<div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="NewsID" />
+        <label>Ürün Resmi</label>
+        <input type="file" asp-for="FileImage" class="form-control-file" />
+        <span asp-validation-for="FileImage" class="text-warning"></span>
+        <br />
+        <button class="btn btn-outline-success">Habere Görsel Ekle</button>
+    </form>
+
+</div>

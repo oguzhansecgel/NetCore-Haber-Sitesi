@@ -27,12 +27,7 @@ namespace BusinessLayer.Concrete
 		{
 			return _newsDal.GetListAll();
 		}
-
-		public List<News> TGetProductsWithCategory()
-		{
-			return _newsDal.GetProductsWithCategory();
-		}
-
+ 
 		public void TAdd(News entity)
 		{
 			_newsDal.Add(entity);

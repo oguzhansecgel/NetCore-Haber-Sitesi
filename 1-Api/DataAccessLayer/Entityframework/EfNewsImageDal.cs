@@ -2,6 +2,7 @@
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Repository;
 using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entityframework
 {
@@ -10,5 +11,7 @@ namespace DataAccessLayer.Entityframework
 		public EfNewsImageDal(Context context) : base(context)
 		{
 		}
+
+	 
 	}
 }

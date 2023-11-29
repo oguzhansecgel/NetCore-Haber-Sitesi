@@ -28,6 +28,12 @@ namespace HaberWeb.Api.Controllers
 			var values = _newsService.TGetListAll();
 			return Ok(values);
 		}
+		[HttpGet("{id}")]
+		public IActionResult GetNews(int id)
+		{
+			var value = _newsService.TGetByID(id);
+			return Ok(value);
+		}
 		[HttpGet("ListNewsWithCategory")]
 		public IActionResult ListNewsWithCategory() 
 		{
