@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using HaberWeb.UI.Dtos.NewsImageDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +17,7 @@ namespace HaberWeb.UI.Dtos.NewsDtos
 		public bool EditorPick { get; set; }
 		public DateTime NewsEnterTime { get; set; }
 		public string CategoryName { get; set; }
+		public IList<ResultNewsImageDto> NewsImages { get; set; }
+ 
 	}
 }

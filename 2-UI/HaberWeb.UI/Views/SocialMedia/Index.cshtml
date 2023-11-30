@@ -1,0 +1,50 @@
+﻿@model List<ResultSocialMediaDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h1>Index</h1>
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Sosyal Medya İşlemleri</h4>		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Sosyal Medya Listesi</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							Sosyal Medya Güncelleme ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">İnstagram URL</th>
+									<th scope="col">Twitter URL</th>
+									<th scope="col">Youtube URL</th>
+									<th scope="col">Facebook URL</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.InstagramURL</td>
+										<td>@item.TwitterURL</td>
+										<td>@item.YoutubeURL</td>
+										<td>@item.FacebookURL</td>
+										<td><a href="/SocialMedia/UpdateSocialMedia/@item.SocialMediaID" class="btn btn-outline-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

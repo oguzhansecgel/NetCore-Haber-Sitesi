@@ -6,13 +6,13 @@
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Ürün İşlemleri</h4>
+        <h4 class="page-title">Haber İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Yeni Ürün Girişi</div>
+                            <div class="card-title">Yeni Haber Girişi</div>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
@@ -37,9 +37,9 @@
                                 <label for="price">Haber Kategorisini Seçiniz</label>
                                 @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
                             </div>
-                        </div>                      
+                        </div>          
                         <div class="card-action">
-                            <button class="btn btn-primary">Ürünü Ekle</button>
+                            <button class="btn btn-primary">Haberi Ekle</button>
                         </div>
                     </div>
                 </form>

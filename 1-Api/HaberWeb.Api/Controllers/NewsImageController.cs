@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLayer.Abstract;
-using DataAccessLayer.Concrete;
 using DtoLayer.NewsImage;
 using EntityLayer.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HaberWeb.Api.Controllers
 {

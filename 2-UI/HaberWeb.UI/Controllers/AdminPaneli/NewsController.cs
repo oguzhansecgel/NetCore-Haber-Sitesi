@@ -59,6 +59,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		[HttpPost]
 		public async Task<IActionResult> CreateNews(CreateNewsDto createNewsDto)
 		{
+			createNewsDto.EditorPick = false;
 			createNewsDto.NewsEnterTime= DateTime.Now;
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(createNewsDto);
@@ -98,6 +99,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		[HttpPost]
 		public async Task<IActionResult> UpdateNews(UpdateNewsDto updateNewsDto)
 		{
+			updateNewsDto.NewsEnterTime=DateTime.Now;
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(updateNewsDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -108,6 +110,11 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 			}
 			return View();
 		}
+
+
+
+
+
 
 	}
 }

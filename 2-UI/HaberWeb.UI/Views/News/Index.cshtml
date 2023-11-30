@@ -9,7 +9,6 @@
 	<div class="container-fluid">
 		<h4 class="page-title">Haber İşlemleri</h4>
 		<a href="/News/CreateNews/" class="btn btn-outline-primary">Yeni Haber Girişi</a>
-
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
@@ -40,18 +39,26 @@
 									count++;
 									<tr>
 										<th>@count</th>
-										<td>@item.NewsTitle</td>
-										<td>@item.NewsSummary</td>
-										<td>@item.NewsContent</td>
+										<td>@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsTitle)</td>
+										<td>@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsSummary)</td>
+										<td >@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsContent)</td>
 										<td>@item.NewsEnterTime</td>
 										<td>@item.CategoryName</td>
 										<td><a href="/News/DeleteNews/@item.NewsID" class="btn btn-outline-danger">Sil</a></td>
 										<td><a href="/News/UpdateNews/@item.NewsID" class="btn btn-outline-success">Güncelle</a></td>
-										<td><a href="/NewsImage/CreateNewsImage/@item.NewsID" class="btn btn-outline-success">Resim Ekle</a></td>
+										<td><a href="/NewsImage/CreateNewsImage/@item.NewsID" class="btn btn-outline-info">Resim Ekle</a></td>
 									</tr>
 								}
 							</tbody>
 						</table>
+						@* <tbody>  eitör seçimlerinde ekleyip silmek için kullanılacak
+							@foreach (var item in Model.Where(news => news.EditorPick))
+							{
+								<tr>
+									<!-- Haber detayları -->
+								</tr>
+							}
+						</tbody> *@
 					</div>
 				</div>
 			</div>

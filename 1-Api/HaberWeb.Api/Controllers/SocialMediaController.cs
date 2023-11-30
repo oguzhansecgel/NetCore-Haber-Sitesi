@@ -26,12 +26,18 @@ namespace HaberWeb.Api.Controllers
 			var values = _socialMediaService.TGetListAll();
 			return Ok(values);
 		}
+		[HttpGet("{id}")]
+		public IActionResult GetSocialMedia(int id)
+		{
+			var values = _socialMediaService.TGetByID(id);
+			return Ok(values);
+		}
 		[HttpDelete("{id}")]
 		public IActionResult DeleteSocialMedia(int id)
 		{
 			var values = _socialMediaService.TGetByID(id);
 			_socialMediaService.TDelete(values);
-			return Ok("Haber Silindi");
+			return Ok("Link Silindi");
 		}
 		[HttpPost]
 		public IActionResult CreateSocialMedia(CreateSocialMediaDto createSocialMediaDto)
@@ -39,14 +45,14 @@ namespace HaberWeb.Api.Controllers
 			
 			var values = _mapper.Map<SocialMedia>(createSocialMediaDto);
 			_socialMediaService.TAdd(values);
-			return Ok("Haber Eklendi");
+			return Ok("Link Eklendi");
 		}
 		[HttpPut]
 		public IActionResult UpdateSocialMedia(UpdateSocialMediaDto updateSocialMediaDto)
 		{
 			var values = _mapper.Map<SocialMedia>(updateSocialMediaDto);
 			_socialMediaService.TUpdate(values);
-			return Ok("Kategori Güncellendi.");
+			return Ok("Link Güncellendi.");
 		}
 	}
 }

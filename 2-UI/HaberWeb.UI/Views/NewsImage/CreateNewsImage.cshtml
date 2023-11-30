@@ -3,18 +3,28 @@
 	ViewData["Title"] = "CreateNewsImage";
 	Layout = "~/Views/AdminLayout/Index.cshtml";
 }
-
-
-
-
-<div class="card-body">
-    <form method="post" enctype="multipart/form-data">
-        <input type="hidden" asp-for="NewsID" />
-        <label>Ürün Resmi</label>
-        <input type="file" asp-for="FileImage" class="form-control-file" />
-        <span asp-validation-for="FileImage" class="text-warning"></span>
-        <br />
-        <button class="btn btn-outline-success">Habere Görsel Ekle</button>
-    </form>
-
+<div class="col-md-12 mt-5"></div>
+<div class="col-md-12 mt-5"></div>
+<div class="col-md-12 mt-5"></div>
+<div class="col-md-12 mt-5"></div>
+<div class="col-md-12 mt-5"></div>
+<div class="col-md-12 mt-5"></div>
+<div class="row mt-5">
+	<div class="col-md-12 ">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Haber Başlık Görseli Ekle</div>
+			</div>
+			<div class="card-body">
+				<form method="post" enctype="multipart/form-data">
+					<input type="hidden" asp-for="NewsID" />
+					<label class="mb-2">Haber Resmi</label>
+					<input type="file" asp-for="FileImage" class="form-control-file" />
+					<span asp-validation-for="FileImage" class="text-warning"></span>
+					<br />
+					<button class="btn btn-outline-success">Habere Görsel Ekle</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

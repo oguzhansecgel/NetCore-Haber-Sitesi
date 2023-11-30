@@ -10,6 +10,7 @@ namespace EntityLayer.Concrete
 	{
 		public int NewsImageID { get; set; }
 		public string Path { get; set; }
+
 		public int NewsID { get; set; }
 		public News News { get; set; }
 	}

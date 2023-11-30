@@ -1,26 +1,37 @@
 ﻿@model List<ResultNewsImageDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
 }
+<div class="col-md-12 mt-5"></div>
+<div class="col-md-12 mt-5"></div>
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Haber Görselleri İşlemleri</h4>		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Görsel Listesi</div>
+					</div>
+					<table class="table table-bordered">
+						<tr>
+							<th>Haber ID</th>
+							<th>Haber fotoğrafı</th>
+							<th>Sil</th>
+						</tr>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.NewsID</td>
+								<td><img src="https://localhost:7187/@item.Path" alt="" width="109" height="109"></td>
+								<td><a href="/NewsImage/DeleteNewsImage/@item.NewsImageID" class="btn mb-1 btn-rounded btn-outline-warning">Görsel Sil</a></td>
 
-<table class="table table-bordered">
-	<tr>
-		<th>Ürün ID</th>
-		<th>Ürün fotoğrafı</th>
-		<th>Sil</th>
-	</tr>
-	@foreach (var item in Model)
-	{
-
-
-		<tr>
-			<td>@item.NewsID</td>
-			<td><img src="https://localhost:7187/@item.Path" alt="" width="109" height="109"></td>
-			<td><a href="/AdminImageProduct/DeleteProductImage/@item.NewsImageID" class="btn mb-1 btn-rounded btn-outline-warning">Görsel Sil</a></td>
-
-		</tr>
-
-	}
-</table>
-
+							</tr>
+						}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

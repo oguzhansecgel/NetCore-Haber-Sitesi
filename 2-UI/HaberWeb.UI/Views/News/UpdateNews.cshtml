@@ -34,14 +34,22 @@
 								<textarea class="form-control" asp-for="NewsContent" id="newscontent" rows="4"></textarea>
 							</div>
 						</div>
-@* 						<div class="card-body">
-							<div class="form-group">
-								<label class="form-check-label" for="editorPick">Editörün Seçimi</label>
-								<input type="checkbox" class="form-check-input" asp-for="EditorPick" id="editorPick">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Editör Seçimi</h4>									
+								</div>
+								<div class="card-body">
+									<p class="demo">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" asp-for="EditorPick">
+											<span class="form-check-sign">Editör Seçimine Ekle</span>
+										</label>
+
+									</p>
+								</div>
 							</div>
 						</div>
- *@
-
 						<div class="card-body">
 							<div class="form-group">
 								<label for="price">Haber Kategorisini Seçiniz</label>
@@ -49,7 +57,7 @@
 							</div>
 						</div>
 						<div class="card-action">
-							<button class="btn btn-primary">Ürünü Güncelle</button>
+							<button class="btn btn-primary">Haberi Güncelle</button>
 						</div>
 					</div>
 				</form>
@@ -57,3 +65,4 @@
 		</div>
 	</div>
 </div>
+ 
