@@ -39,8 +39,8 @@
 									count++;
 									<tr>
 										<th>@count</th>
-										<td>@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsTitle)</td>
-										<td>@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsSummary)</td>
+										<td>@(item.NewsTitle.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsTitle)</td>
+										<td>@(item.NewsSummary.Length > 25 ? item.NewsSummary.Substring(0, 25) + "..." : @item.NewsSummary)</td>
 										<td >@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." :@item.NewsContent)</td>
 										<td>@item.NewsEnterTime</td>
 										<td>@item.CategoryName</td>

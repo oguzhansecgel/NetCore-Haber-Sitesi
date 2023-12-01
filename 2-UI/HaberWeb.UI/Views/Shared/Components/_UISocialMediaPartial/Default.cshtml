@@ -1,0 +1,19 @@
+﻿@model List<ResultSocialMediaDto>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="col-xl-4 col-lg-4 col-md-4">
+    <div class="header-right f-right d-none d-lg-block">
+        <!-- Heder social -->
+        <ul class="header-social">
+            @foreach (var item in Model)
+            {
+                <li><a href=@item.FacebookURL target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="@item.TwitterURL" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="@item.InstagramURL" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li> <a href="@item.YoutubeURL" target="_blank"><i class="fab fa-youtube"></i></a></li>
+            }
+            
+        </ul>    
+    </div>
+</div>

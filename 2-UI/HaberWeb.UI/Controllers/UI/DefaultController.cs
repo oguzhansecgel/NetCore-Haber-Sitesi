@@ -8,5 +8,12 @@ namespace HaberWeb.UI.Controllers.UI
 		{
 			return View();
 		}
-	}
+        public IActionResult GetContentDetail([FromQuery] int categoryId)
+        {
+            return ViewComponent("_UIContentPartial", new
+            {
+                categoryId = categoryId
+            });
+        }
+    }
 }

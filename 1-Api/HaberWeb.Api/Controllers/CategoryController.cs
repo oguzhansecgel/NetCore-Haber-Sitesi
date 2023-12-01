@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DtoLayer.Category;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -13,14 +14,15 @@ namespace HaberWeb.Api.Controllers
 	{
 		private readonly ICategoryService _categoryService;
 		private readonly IMapper _mapper;
+		private readonly Context _context;
+        public CategoryController(ICategoryService categoryService, IMapper mapper, Context context)
+        {
+            _categoryService = categoryService;
+            _mapper = mapper;
+            _context = context;
+        }
 
-		public CategoryController(ICategoryService categoryService, IMapper mapper)
-		{
-			_categoryService = categoryService;
-			_mapper = mapper;
-		}
-
-		[HttpGet]
+        [HttpGet]
 		public IActionResult CategoryList()
 		{
 			var values = _categoryService.TGetListAll();
@@ -31,6 +33,13 @@ namespace HaberWeb.Api.Controllers
         {
             var value = _categoryService.TGetByID(id);
             return Ok(value);
+        }
+        // kategoriye göre ürün listeleme
+        [HttpGet("news{categoryId}")]
+        public IActionResult GetNewsByCategoryId(int categoryId)
+        {
+            var products = _context.Newses.Where(p => p.CategoryID == categoryId).ToList();
+            return Ok(products);
         }
         [HttpDelete("{id}")]
 		public IActionResult DeleteCategory(int id)
@@ -53,5 +62,6 @@ namespace HaberWeb.Api.Controllers
 			_categoryService.TUpdate(values);
 			return Ok("Kategori Güncellendi.");
 		}
+
 	}
 }
