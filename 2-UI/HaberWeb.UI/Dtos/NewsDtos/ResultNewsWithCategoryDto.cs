@@ -17,7 +17,7 @@ namespace HaberWeb.UI.Dtos.NewsDtos
 		public bool EditorPick { get; set; }
 		public DateTime NewsEnterTime { get; set; }
 		public string CategoryName { get; set; }
-		public IList<ResultNewsImageDto> NewsImages { get; set; }
+		public List<ResultNewsImageDto> NewsImage { get; set; }
  
 	}
 }

@@ -20,6 +20,6 @@ namespace HaberWeb.UI.Dtos.NewsDtos
 		public int CategoryID { get; set; }
 
 		public List<ResultNewsImageDto> NewsImage { get; set; }
-		public List<ResultCategoryDto> Category{ get; set; }
+		public List<Category> Category{ get; set; }
 	}
 }
