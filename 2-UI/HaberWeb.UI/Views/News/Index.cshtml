@@ -1,4 +1,7 @@
-﻿@model List<ResultNewsWithCategoryDto>
+﻿@model IPagedList<ResultNewsWithCategoryDto>
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -50,7 +53,9 @@
 									</tr>
 								}
 							</tbody>
-						</table>						
+						</table>	
+						<br />
+						@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))
 					</div>
 				</div>
 			</div>

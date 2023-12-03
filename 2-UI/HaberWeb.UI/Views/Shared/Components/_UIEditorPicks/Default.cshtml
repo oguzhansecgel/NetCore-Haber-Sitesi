@@ -8,7 +8,7 @@
 					.Where(x => x.EditorPick)
 					.GroupBy(x => x.CategoryName))
 			{
-				<div class="col-lg-4 col-md-6">
+				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="block">
 						<h3 class="news-title">
 								<span>@categoryGroup.Key</span>
@@ -30,6 +30,9 @@
 										<h2 class="post-title title-sm">
 											<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">@item.NewsTitle</a>
 										</h2>
+										<p>
+											Haberin Detayları için <a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })"> Tıklayınız </a>
+										</p>
 										<div class="post-meta">
 											<span class="posted-time">@item.NewsEnterTime</span>
 										</div>

@@ -1,69 +1,11 @@
 ﻿@model List<ResultNewsWithCategoryDto>
-
+ 
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/Default/Index.cshtml";
 }
 
-@* <section class="section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-				<div class="block category-listing category-style2">
-					<div class="post-block-wrapper post-list-view clearfix">
-						<div class="row">
-							@foreach (var item in Model)
-							{
-
-								<div class="col-md-6 col-sm-6">
-									<div class="post-thumbnail thumb-float-style">
-										@foreach (var image in item.NewsImage)
-										{
-											<a href="single-post.html">
-												<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="">
-											</a>
-
-										}
-
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<div class="post-content">
-										<div class="post-meta">
-											<span>
-												<i class="fa fa-clock-o"></i>
-												<a href="">@item.NewsEnterTime</a>
-											</span>
-
-											<span class="post-author">
-												<a href="" class="text-dark"> </a>
-											</span>
-										</div>
-										<h2 class="post-title title-large ">
-											<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">@item.NewsTitle</a>
-
-										</h2>
-
-
-										<p>
-											@item.NewsSummary
-										</p>
-
-									</div>
-								</div>
-							}
-
-						</div>
-					</div>
-
-
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-</section> *@
+ 
 
 @if (Model != null)
 {
@@ -80,7 +22,7 @@
 										@foreach (var image in item.NewsImage)
 										{
 											<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">
-												<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="">
+												<img class="" src="https://localhost:7187/@image.Path" alt="" width="350px" height="300px">
 											</a>
 
 										}
@@ -108,6 +50,7 @@
 								</div>
 							</div>
 						}
+						
 					</div>
 				</div>
 			</div>

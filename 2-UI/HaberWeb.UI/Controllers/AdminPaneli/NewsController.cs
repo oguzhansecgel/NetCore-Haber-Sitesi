@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
+using X.PagedList;
 
 namespace HaberWeb.UI.Controllers.AdminPaneli
 {
@@ -16,14 +17,14 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(int page = 1)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7187/api/News/ListNewsWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultNewsWithCategoryDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultNewsWithCategoryDto>>(jsonData).ToPagedList(page,10);
                 return View(values);
 
             }
