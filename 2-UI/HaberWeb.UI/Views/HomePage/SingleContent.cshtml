@@ -1,0 +1,102 @@
+﻿@model List<ResultNewsDto>
+@{
+	ViewData["Title"] = "SingleContent";
+	Layout = "~/Views/Default/Index.cshtml";
+
+}
+
+<section class="block-wrapper no-sidebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="single-post">
+					@foreach (var item in Model)
+					{
+						<div class="post-header mb-5">
+							<a class="post-category" href="/HomePage/Index/@item.CategoryID">@item.CategoryID</a>
+							<h2 class="post-title">
+								@item.NewsTitle
+							</h2>
+							<p>
+								@{
+									string newsSummary = item.NewsSummary;
+									int maxCharacters = 65;
+									int lineBreakInterval = 65; // Her 40 karakterde bir alt satıra geç
+
+									if (newsSummary.Length > maxCharacters)
+									{
+										string truncatedSummary = "";
+										int lineBreakCount = 0;
+
+										for (int i = 0; i < newsSummary.Length; i++)
+										{
+											truncatedSummary += newsSummary[i];
+
+											if (++lineBreakCount == lineBreakInterval)
+											{
+												truncatedSummary += "<br/>";
+												lineBreakCount = 0;
+											}
+										}
+
+										@Html.Raw(truncatedSummary +".")
+									}
+									else
+									{
+										@newsSummary
+									}
+								}
+							</p>
+						</div>
+						<div class="post-body">
+							<div class="post-featured-image">
+								<img src="" class="img-fluid" alt="featured-image">
+
+
+								<h1>BURAYA GÖRSEL GELECEK AGA</h1>
+
+							</div>
+							<div class="entry-content">
+								<p>
+									@{
+										string newsContent = item.NewsContent;
+										int maxCharactersCN = 65;
+										int lineBreakIntervalCN = 65; // Her 40 karakterde bir alt satıra geç
+
+										if (newsContent.Length > maxCharactersCN)
+										{
+											string truncatedSummary = "";
+											int lineBreakCount = 0;
+
+											for (int i = 0; i < newsContent.Length; i++)
+											{
+												truncatedSummary += newsContent[i];
+
+												if (++lineBreakCount == lineBreakInterval)
+												{
+													truncatedSummary += "-<br/>";
+													lineBreakCount = 0;
+												}
+											}
+
+											@Html.Raw(truncatedSummary + ".")
+										}
+										else
+										{
+											@newsContent
+										}
+									}
+								</p>
+								<div class="media mb-4 single-media">
+
+									<div class="media-body">
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

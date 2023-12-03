@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    @await Component.InvokeAsync("_UIHeadPartial")
+
+<body>
+
+    @await Component.InvokeAsync("_UITrendingBarPartial")
+
+   @await Component.InvokeAsync("_UIHeaderPartial")
+
+   @await Component.InvokeAsync("_UINavbarPartial")
+
+     @RenderBody()
+    @await Component.InvokeAsync("_UIEditorPicks")
+
+    @await Component.InvokeAsync("_UIFooterPartial")
+
+    @await Component.InvokeAsync("_UIScriptPartial")
+
+
+</body>
+</html>
