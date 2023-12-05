@@ -21,7 +21,7 @@
 									<div class="post-thumbnail thumb-float-style">
 										@foreach (var image in item.NewsImage)
 										{
-											<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">
+											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
 												<img class="" src="https://localhost:7187/@image.Path" alt="" width="350px" height="300px">
 											</a>
 
@@ -30,7 +30,7 @@
 									<div class="col-md-6 col-sm-6">
 										<div class="post-content">
 											<h2 class="post-title mt-3">
-												<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">@item.NewsTitle</a>
+												<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
 											</h2>
 											<div class="post-meta">
 												<span class="posted-time">@item.NewsEnterTime</span>
@@ -43,7 +43,10 @@
 														newsSummary = newsSummary.Substring(0, 40) + "...";
 													}
 													@newsSummary
+
 												}
+												Haber Detayları İçin <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">Tıklayınız...</a>
+
 											</p>
 										</div>
 									</div>

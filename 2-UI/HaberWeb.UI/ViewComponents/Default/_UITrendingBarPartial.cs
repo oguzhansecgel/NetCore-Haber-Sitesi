@@ -24,5 +24,6 @@ namespace HaberWeb.UI.ViewComponents.Default
             }
             return View();
         }
+        
     }
 }

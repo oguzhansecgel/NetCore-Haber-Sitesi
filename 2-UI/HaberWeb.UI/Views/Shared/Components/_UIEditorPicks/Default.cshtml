@@ -20,7 +20,7 @@
 									<div class="post-thumbnail">
 										@foreach (var image in item.NewsImage)
 										{
-											<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">
+											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
 												<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
 											</a>
 										}
@@ -28,10 +28,10 @@
 
 									<div class="post-content">
 										<h2 class="post-title title-sm">
-											<a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })">@item.NewsTitle</a>
+											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
 										</h2>
 										<p>
-											Haberin Detayları için <a href="@Url.Action("SingleContent", "HomePage", new { newsID = item.NewsID })"> Tıklayınız </a>
+											Haberin Detayları için <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })"> Tıklayınız </a>
 										</p>
 										<div class="post-meta">
 											<span class="posted-time">@item.NewsEnterTime</span>
