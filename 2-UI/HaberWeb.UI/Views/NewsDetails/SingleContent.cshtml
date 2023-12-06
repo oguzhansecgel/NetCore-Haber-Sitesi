@@ -13,7 +13,9 @@
 					@foreach (var item in Model)
 					{
 						<div class="post-header mb-5">
-							<a class="post-category" href="@Url.Action("Index", "HomePage", new { categoryID = item.CategoryID })">İlgili Kategoriye Git</a>
+
+								<a class="post-category" href="@Url.Action("Index", "HomePage", new { categoryID = item.CategoryID })">İlgili Kategoriye Git</a>
+
 							<h2 class="post-title">
 								@item.NewsTitle
 							</h2>
@@ -21,7 +23,7 @@
 								@{
 									string newsSummary = item.NewsSummary;
 									int maxCharacters = 65;
-									int lineBreakInterval = 65; // Her 40 karakterde bir alt satıra geç
+									int lineBreakInterval = 65;  
 
 									if (newsSummary.Length > maxCharacters)
 									{
@@ -53,6 +55,8 @@
 								@foreach (var image in item.NewsImage)
 								{
 									<img height="500px" width="750px" src="https://localhost:7187/@image.Path" class="" alt="featured-image">
+									<iframe width="560" height="315" src="https://localhost:7187/@image.Path" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 								}
 							</div>

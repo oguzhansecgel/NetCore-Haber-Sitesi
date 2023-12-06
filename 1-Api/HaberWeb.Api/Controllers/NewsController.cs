@@ -15,6 +15,7 @@ namespace HaberWeb.Api.Controllers
 	public class NewsController : ControllerBase
 	{
 		private readonly INewsService _newsService;
+
 		private readonly IMapper _mapper;
 
 		public NewsController(INewsService newsService, IMapper mapper)
@@ -50,6 +51,7 @@ namespace HaberWeb.Api.Controllers
 			});
 			return Ok(values.ToList());
 		}
+ 
 		[HttpDelete("{id}")]
 		public IActionResult DeleteNews(int id) 
 		{ 

@@ -29,7 +29,8 @@ namespace HaberWeb.UI.Controllers.UI
                 var values = JsonConvert.DeserializeObject<ResultNewsDto>(jsonData);
                 var imageJsonData = await responserMessage2.Content.ReadAsStringAsync();
                 var imageValues = JsonConvert.DeserializeObject<List<ResultNewsImageDto>>(imageJsonData);
-              
+ 
+
                 values.NewsImage = imageValues
                 .Where(img => img.NewsID == values.NewsID)
                 .ToList();

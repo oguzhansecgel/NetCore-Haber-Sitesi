@@ -60,16 +60,20 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		[HttpPost]
 		public async Task<IActionResult> CreateNews(CreateNewsDto createNewsDto)
 		{
-			createNewsDto.EditorPick = false;
-			createNewsDto.NewsEnterTime= DateTime.Now;
-			var client = _httpClientFactory.CreateClient();
-			var jsonData = JsonConvert.SerializeObject(createNewsDto);
-			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-			var responseMessage = await client.PostAsync("https://localhost:7187/api/News", stringContent);
-			if (responseMessage.IsSuccessStatusCode)
+			if(ModelState.IsValid)
 			{
-				return RedirectToAction("Index");
-			}
+                createNewsDto.EditorPick = false;
+                createNewsDto.NewsEnterTime = DateTime.Now;
+                var client = _httpClientFactory.CreateClient();
+                var jsonData = JsonConvert.SerializeObject(createNewsDto);
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage = await client.PostAsync("https://localhost:7187/api/News", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+			
 			return View();
 		}
 

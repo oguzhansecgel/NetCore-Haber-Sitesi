@@ -1,5 +1,7 @@
 ﻿@model List<ResultNewsWithCategoryDto>
- 
+
+
+
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/Default/Index.cshtml";
@@ -12,22 +14,23 @@
 	<section class="block-wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="row">
 						@foreach (var item in Model)
 						{
-							<div class="col-md-6 col-sm-6">
-								<div class="post-block-wrapper post-grid-view clearfix">
+							<div class="col-md-4 col-sm-6" >
+								<div class="post-block-wrapper post-grid-view clearfix text-center">
 									<div class="post-thumbnail thumb-float-style">
 										@foreach (var image in item.NewsImage)
 										{
 											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
-												<img class="" src="https://localhost:7187/@image.Path" alt="" width="350px" height="300px">
+												<img class="" src="https://localhost:7187/@image.Path" alt="" width="250px" height="166px">
+
 											</a>
 
 										}
 									</div>
-									<div class="col-md-6 col-sm-6">
+									<div class="col-md-12 col-sm-6">
 										<div class="post-content">
 											<h2 class="post-title mt-3">
 												<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
@@ -38,13 +41,14 @@
 											<p>
 												@{
 													string newsSummary = item.NewsSummary;
-													if (newsSummary.Length > 40)
+													if (newsSummary.Length > 20)
 													{
-														newsSummary = newsSummary.Substring(0, 40) + "...";
+														newsSummary = newsSummary.Substring(0, 25) + "...";
 													}
 													@newsSummary
 
 												}
+												<br />
 												Haber Detayları İçin <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">Tıklayınız...</a>
 
 											</p>
@@ -53,7 +57,8 @@
 								</div>
 							</div>
 						}
-						
+					
+
 					</div>
 				</div>
 			</div>

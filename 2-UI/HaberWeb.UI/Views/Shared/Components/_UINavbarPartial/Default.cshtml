@@ -19,9 +19,12 @@
                         <ul class="navbar-nav mr-auto">
 
                             <li class="nav-item dropdown">
+                                <a class="nav-link" href="/UIHomePage/Index/" role="button">
+                                    Anasayfa
+                                </a>
                                 @foreach (var item in Model)
                                 {
-                                    <a  class="nav-link" href="@Url.Action("Index", "HomePage", new { categoryId = item.CategoryID })" role="button">
+                                    <a class="nav-link" href="@Url.Action("Index", "HomePage", new { categoryId = item.CategoryID })" role="button">
                                         @item.CategoryName
                                     </a>
 

@@ -17,7 +17,9 @@ namespace HaberWeb.UI.Controllers.UI
         {
             _httpClientFactory = httpClientFactory;
         }
-        [Route("Anasayfa")]
+        
+
+
         public async Task<IActionResult> Index(int categoryID)
         {
 
