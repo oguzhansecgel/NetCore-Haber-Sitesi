@@ -1,9 +1,48 @@
-﻿
+﻿@model List<ResultNewsWithCategoryDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Default/Index.cshtml";
 }
-
-
-
-@* Anasayfa *@
+@*anasayfa*@
+<section class="block-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                <div class="block category-listing">
+                    <h3 class="news-title"><span>En Son Haberler</span></h3>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model.OrderByDescending(x => x.NewsEnterTime).Take(12))
+                    {
+                        <div class="col-md-4 col-sm-4">
+                            <div class="post-block-wrapper post-grid-view clearfix">
+                                <div class="post-thumbnail">
+                                    <a href="single-post.html">
+                                        @foreach (var image in item.NewsImage)
+                                        {
+                                            <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
+                                            <img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
+                                            </a>
+                                        }
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <a class="post-category" href="post-category-2.html">@item.CategoryName</a>
+                                    <h2 class="post-title mt-3">
+                                        <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
+                                    </h2>
+                                    <div class="post-meta">
+                                        <span class="posted-time">@item.NewsEnterTime</span>                                       
+                                    </div>
+                                    <p>
+                                      @item.NewsSummary
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }                                    
+                </div>   
+            </div>       
+        </div>
+    </div>
+</section>

@@ -21,11 +21,11 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		{
 
 			var client = _httpClientFactory.CreateClient();
-			var responserMessage = await client.GetAsync("https://localhost:7187/api/NewsImage");
+			var responserMessage = await client.GetAsync("https://localhost:7187/api/NewsImage/ListNewsImageWithNews");
 			if (responserMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responserMessage.Content.ReadAsStringAsync();
-				var values = JsonConvert.DeserializeObject<List<ResultNewsImageDto>>(jsonData);
+				var values = JsonConvert.DeserializeObject<List<ResultImageWithNews>>(jsonData);
 				return View(values);
 			}
 			return View();
@@ -38,7 +38,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 
 			if (responseMessage.IsSuccessStatusCode)
 			{
-				return RedirectToAction("Index");
+				return RedirectToAction("Index","News");
 			}
 			return View();
 

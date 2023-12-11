@@ -1,5 +1,6 @@
 ﻿using HaberWeb.UI.Dtos.CategoryDtos;
 using HaberWeb.UI.Dtos.NewsDtos;
+using HaberWeb.UI.Dtos.NewsImageDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -21,11 +22,20 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7187/api/News/ListNewsWithCategory");
-            if (responseMessage.IsSuccessStatusCode)
+			var responserMessage2 = await client.GetAsync($"https://localhost:7187/api/NewsImage");
+			if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultNewsWithCategoryDto>>(jsonData).ToPagedList(page,10);
-                return View(values);
+				var imageJsonData = await responserMessage2.Content.ReadAsStringAsync();
+				var imageValues = JsonConvert.DeserializeObject<List<ResultNewsImageDto>>(imageJsonData);
+				foreach (var news in values)
+				{
+					news.NewsImage = imageValues
+						.Where(img => img.NewsID == news.NewsID)
+						.ToList();
+				}
+				return View(values);
 
             }
             return View();

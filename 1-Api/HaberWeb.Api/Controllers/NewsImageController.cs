@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using BusinessLayer.Abstract;
+using DataAccessLayer.Concrete;
+using DtoLayer.News;
 using DtoLayer.NewsImage;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HaberWeb.Api.Controllers
 {
@@ -28,7 +31,19 @@ namespace HaberWeb.Api.Controllers
 			var values = _newsImageService.TGetListAll();
 			return Ok(values);
 		}
-		[HttpGet("{id}")]
+        [HttpGet("ListNewsImageWithNews")]
+        public IActionResult ListNewsWithCategory()
+        {
+            var context = new Context();
+            var values = context.NewsImages.Include(x => x.News).Select(y => new ResultImageWithNews
+            {
+                NewsImageID = y.NewsImageID,
+				NewsTitle=y.News.NewsTitle,
+				Path=y.Path
+            });
+            return Ok(values.ToList());
+        }
+        [HttpGet("{id}")]
 		public IActionResult ImageGetById(int id)
 		{
 			var values = _newsImageService.TGetByID(id);

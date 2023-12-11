@@ -18,10 +18,12 @@
    @await Component.InvokeAsync("_UIHeaderPartial")
 
    @await Component.InvokeAsync("_UINavbarPartial")
-   <div class="container">
-        @RenderBody()
+   
+                    @RenderBody()
 
-   </div>
+
+ 
+
     @await Component.InvokeAsync("_UIEditorPicks")
 
     @await Component.InvokeAsync("_UIFooterPartial")
