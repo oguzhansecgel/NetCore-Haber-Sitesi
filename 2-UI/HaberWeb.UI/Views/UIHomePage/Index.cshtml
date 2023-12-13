@@ -1,48 +1,185 @@
 ﻿@model List<ResultNewsWithCategoryDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Default/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Default/Index.cshtml";
 }
+<style>
+	body {
+		margin: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	.SliderRow {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 55vh;
+		background-color: #f4f4f4;
+	}
+
+	#sliderWrapper {
+		position: relative;
+		width: 100%;
+		max-width: 100%; 
+		overflow: hidden;
+	}
+
+	.slide {
+		width: 100%;
+		display: none;
+	}
+
+		.slide img {
+			width: 850px;
+			height: 400px; 
+		}
+
+	.prev-btn,
+	.next-btn {
+		position: absolute;
+		top: 50%;
+		font-size: 24px;
+		cursor: pointer;
+		color: #333;
+		z-index: 1;
+		transition: background-color 0.3s;
+	}
+
+	.prev-btn {
+		left: 10px;
+	}
+
+	.next-btn {
+		right: 10px;
+	}
+
+	.font-weight-bold {
+		font-weight: bold;
+	}
+
+	.text-lg-left {
+		font-size: 1.5em;
+	}
+
+	.slider-container {
+		position: relative;
+		width: 100%; /* Tam ekran genişliği */
+		margin: auto;
+	}
+
+	.prev-btn,
+	.next-btn {
+		background-color: rgba(169, 169, 169, 0.5);
+		border-radius: 50%;
+		padding: 10px;
+		transition: background-color 0.3s;
+	}
+
+		.prev-btn:hover,
+		.next-btn:hover {
+			background-color: #a9a9a9;
+		}
+</style>
 @*anasayfa*@
+
+<div class="container" >
+	<section class="SliderRow">
+		<div class="SliderColumn">
+			<div class="prev-btn" onclick="changeSlide(-1)">&lt;</div>
+
+			<div>
+				<div id="slider" class="slider loaded">
+					<div id="sliderWrapper" class="wrapper">
+						@foreach (var item in Model)
+						{
+							<div class="slide text-center">
+								<a data-headlinenumber="1" href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })"
+								   title="@item.NewsTitle"
+								   target="_blank">
+									@foreach (var image in item.NewsImage)
+									{
+										<img class="shi img-fluid" src="https://localhost:7187/@image.Path"
+											 alt="@item.NewsTitle">
+									}
+								</a>
+								<div style="display:flex; justify-content:center; margin-top:30px;">
+									<p class="font-weight-bold text-lg-left " style="color:black">@item.NewsTitle</p>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+			<div class="next-btn" onclick="changeSlide(1)">&gt;</div>
+		</div>
+	</section>
+
+</div>
+
+
 <section class="block-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                <div class="block category-listing">
-                    <h3 class="news-title"><span>En Son Haberler</span></h3>
-                </div>
-                <div class="row">
-                    @foreach (var item in Model.OrderByDescending(x => x.NewsEnterTime).Take(12))
-                    {
-                        <div class="col-md-4 col-sm-4">
-                            <div class="post-block-wrapper post-grid-view clearfix">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.html">
-                                        @foreach (var image in item.NewsImage)
-                                        {
-                                            <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
-                                            <img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
-                                            </a>
-                                        }
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <a class="post-category" href="post-category-2.html">@item.CategoryName</a>
-                                    <h2 class="post-title mt-3">
-                                        <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="posted-time">@item.NewsEnterTime</span>                                       
-                                    </div>
-                                    <p>
-                                      @item.NewsSummary
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    }                                    
-                </div>   
-            </div>       
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+				<div class="block category-listing">
+					<h3 class="news-title"><span>En Son Haberler</span></h3>
+				</div>
+				<div class="row">
+					@foreach (var item in Model.OrderByDescending(x => x.NewsEnterTime).Take(12))
+					{
+						<div class="col-md-4 col-sm-4">
+							<div class="post-block-wrapper post-grid-view clearfix">
+								<div class="post-thumbnail">
+									<a href="single-post.html">
+										@foreach (var image in item.NewsImage)
+										{
+											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
+												<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
+											</a>
+										}
+									</a>
+								</div>
+								<div class="post-content">
+									<a class="post-category" href="post-category-2.html">@item.CategoryName</a>
+									<h2 class="post-title mt-3">
+										<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
+									</h2>
+									<div class="post-meta">
+										<span class="posted-time">@item.NewsEnterTime</span>
+									</div>
+									<p>
+										@item.NewsSummary
+									</p>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+	let currentSlide = 0;
+
+	function showSlide(index) {
+		$('.slide').hide();
+		$('.slide').eq(index).show();
+		currentSlide = index;
+	}
+
+	function changeSlide(direction) {
+		currentSlide += direction;
+		if (currentSlide < 0) {
+			currentSlide = $('.slide').length - 1;
+		} else if (currentSlide >= $('.slide').length) {
+			currentSlide = 0;
+		}
+		showSlide(currentSlide);
+	}
+
+	showSlide(currentSlide);
+
+</script>
