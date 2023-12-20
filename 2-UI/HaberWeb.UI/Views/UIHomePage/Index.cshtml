@@ -13,44 +13,52 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 55vh;
-		background-color: #f4f4f4;
+		height: 445px; /* Yükseklik ayarı */
+		margin-top: 20px;
+		overflow: hidden;
 	}
 
 	#sliderWrapper {
 		position: relative;
-		width: 100%;
-		max-width: 100%; 
+		width: 930px; /* Genişlik ayarı */
+		max-width: 100%;
 		overflow: hidden;
 	}
 
 	.slide {
-		width: 100%;
+		width: 930px; /* Görüntü genişliği */
 		display: none;
 	}
 
 		.slide img {
-			width: 850px;
-			height: 400px; 
+			width: 800px;
+			height: 300px; /* Görüntü yüksekliği */
 		}
+
+	.SliderColumn {
+		position: relative;
+	}
 
 	.prev-btn,
 	.next-btn {
 		position: absolute;
-		top: 50%;
+		top: 130px;
 		font-size: 24px;
 		cursor: pointer;
 		color: #333;
 		z-index: 1;
 		transition: background-color 0.3s;
+		padding: 10px;
+		background-color: rgba(169, 169, 169, 0.5);
+		border-radius: 50%;
 	}
 
 	.prev-btn {
-		left: 10px;
+		left: -45px; /* İhtiyaca göre ayarlayabilirsiniz */
 	}
 
 	.next-btn {
-		right: 10px;
+		right: -45px; /* İhtiyaca göre ayarlayabilirsiniz */
 	}
 
 	.font-weight-bold {
@@ -67,30 +75,23 @@
 		margin: auto;
 	}
 
-	.prev-btn,
-	.next-btn {
-		background-color: rgba(169, 169, 169, 0.5);
-		border-radius: 50%;
-		padding: 10px;
-		transition: background-color 0.3s;
+	.prev-btn:hover,
+	.next-btn:hover {
+		background-color: #a9a9a9;
 	}
-
-		.prev-btn:hover,
-		.next-btn:hover {
-			background-color: #a9a9a9;
-		}
 </style>
 @*anasayfa*@
 
-<div class="container" >
-	<section class="SliderRow">
-		<div class="SliderColumn">
-			<div class="prev-btn" onclick="changeSlide(-1)">&lt;</div>
 
-			<div>
-				<div id="slider" class="slider loaded">
-					<div id="sliderWrapper" class="wrapper">
-						@foreach (var item in Model)
+<section class="SliderRow">
+	<div class="SliderColumn">
+		<div class="prev-btn" onclick="changeSlide(-1)">&lt;</div>
+		<div class="slider-container">
+			<div id="slider" class="slider loaded">
+				<div id="sliderWrapper" class="wrapper">
+					@if(Model!=null)
+					{
+						@foreach (var item in Model.OrderByDescending(x => x.NewsEnterTime).Take(10))
 						{
 							<div class="slide text-center">
 								<a data-headlinenumber="1" href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })"
@@ -103,20 +104,31 @@
 									}
 								</a>
 								<div style="display:flex; justify-content:center; margin-top:30px;">
-									<p class="font-weight-bold text-lg-left " style="color:black">@item.NewsTitle</p>
+									<a class="font-weight-bold text-lg-left " style="color:black" href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
 								</div>
 							</div>
 						}
-					</div>
+					}
+					else
+					{
+						<div class="slide text-center">
+							<a data-headlinenumber="1" href=""
+							   title="Null"
+							   target="_blank">
+									<img class="shi img-fluid" src=""
+										 alt="">
+							</a>
+							<div style="display:flex; justify-content:center; margin-top:30px;">
+								<p class="font-weight-bold text-lg-left " style="color:black">Null</p>
+							</div>
+						</div>
+					}
 				</div>
 			</div>
-			<div class="next-btn" onclick="changeSlide(1)">&gt;</div>
 		</div>
-	</section>
-
-</div>
-
-
+		<div class="next-btn" onclick="changeSlide(1)">&gt;</div>
+	</div>
+</section>
 <section class="block-wrapper">
 	<div class="container">
 		<div class="row">
@@ -125,34 +137,41 @@
 					<h3 class="news-title"><span>En Son Haberler</span></h3>
 				</div>
 				<div class="row">
-					@foreach (var item in Model.OrderByDescending(x => x.NewsEnterTime).Take(12))
+					@if(Model!=null)
 					{
-						<div class="col-md-4 col-sm-4">
-							<div class="post-block-wrapper post-grid-view clearfix">
-								<div class="post-thumbnail">
-									<a href="single-post.html">
-										@foreach (var image in item.NewsImage)
-										{
-											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
-												<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
-											</a>
-										}
-									</a>
-								</div>
-								<div class="post-content">
-									<a class="post-category" href="post-category-2.html">@item.CategoryName</a>
-									<h2 class="post-title mt-3">
-										<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
-									</h2>
-									<div class="post-meta">
-										<span class="posted-time">@item.NewsEnterTime</span>
+						@foreach (var item in Model.OrderByDescending(x => x.NewsEnterTime).Take(12))
+						{
+							<div class="col-md-4 col-sm-4">
+								<div class="post-block-wrapper post-grid-view clearfix">
+									<div class="post-thumbnail">
+										<a href="single-post.html">
+											@foreach (var image in item.NewsImage)
+											{
+												<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
+													<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
+												</a>
+											}
+										</a>
 									</div>
-									<p>
-										@item.NewsSummary
-									</p>
+									<div class="post-content">
+										<a class="post-category" href="post-category-2.html">@item.CategoryName</a>
+										<h2 class="post-title mt-3">
+											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
+										</h2>
+										<div class="post-meta">
+											<span class="posted-time">@item.NewsEnterTime</span>
+										</div>
+										<p>
+											@item.NewsSummary
+										</p>
+									</div>
 								</div>
 							</div>
-						</div>
+						}
+					}
+					else
+					{
+						<p>NULL</p>
 					}
 				</div>
 			</div>
@@ -182,4 +201,8 @@
 
 	showSlide(currentSlide);
 
+	// Automatically change slide every 1000 milliseconds (1 second)
+	setInterval(function () {
+		changeSlide(1);
+	}, 3000);
 </script>
