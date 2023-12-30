@@ -8,7 +8,7 @@
 <div class="content">
 	<div class="container-fluid">
 		<h4 class="page-title">Kategori İşlemleri</h4>
-		<a href="/Category/CreateCategory/" class="btn btn-outline-info">Yeni Kategori Ekle</a>
+		<a href="@Url.RouteUrl("kategoriekle")" class="btn btn-outline-info">Yeni Kategori Ekle</a>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
@@ -34,8 +34,8 @@
 									<tr>
 										<td>@item.CategoryID</td>
 										<td>@item.CategoryName</td>
-										<td><a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-outline-danger">Sil</a></td>
-										<td><a href="/Category/UpdateCategory/@item.CategoryID" class="btn btn-outline-success">Güncelle</a></td>
+										<td><a href="@Url.RouteUrl("kategorisil",new{id=item.CategoryID})" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="@Url.RouteUrl("kategoriguncelle",new{id=item.CategoryID})" class="btn btn-outline-success">Güncelle</a></td>
 									</tr>
 								}
 							</tbody>

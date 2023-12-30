@@ -27,11 +27,139 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
+	endpoints.MapControllerRoute(
+		name: "Anasayfa",
+		pattern: "",
+		defaults: new { controller = "UIHomePage", action = "Index" }
+	);
+});
 
-
+app.UseEndpoints(endpoints =>
+{
     endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=UIHomePage}/{action=Index}/{id?}");
+        name: "Haberler",
+        pattern: "Haberler",
+        defaults: new { controller = "HomePage", action = "Index" }
+    );
+});
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "HaberDetayi",
+        pattern: "HaberDetayi",
+        defaults: new { controller = "NewsDetails", action = "SingleContent" }
+    );
+});
 
+//admin paneli
+//kategori
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "AdminKategori",
+		pattern: "AdminKategori",
+		defaults: new { controller = "Category", action = "Index" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "kategoriekle",
+		pattern: "kategoriekle",
+		defaults: new { controller = "Category", action = "CreateCategory" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "kategorisil",
+		pattern: "kategorisil{id}",
+		defaults: new { controller = "Category", action = "DeleteCategory" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "kategoriguncelle",
+		pattern: "kategoriguncelle/{id}",
+		defaults: new { controller = "Category", action = "UpdateCategory" }
+	);
+});
+
+//haberler
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "AdminHaber",
+		pattern: "AdminHaber",
+		defaults: new { controller = "News", action = "Index" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "haberekle",
+		pattern: "haberekle",
+		defaults: new { controller = "News", action = "CreateNews" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "habersil",
+		pattern: "habersil{id}",
+		defaults: new { controller = "News", action = "DeleteNews" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "haberguncelle",
+		pattern: "haberguncelle/{id}",
+		defaults: new { controller = "News", action = "UpdateNews" }
+	);
+});
+
+/*haber görselleri*/
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "Adminhabergorsel",
+		pattern: "Adminhabergorsel",
+		defaults: new { controller = "NewsImage", action = "Index" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "habergorselekle",
+		pattern: "habergorselekle",
+		defaults: new { controller = "NewsImage", action = "CreateNewsImage" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "habergorselsil",
+		pattern: "habergorselsil{id}",
+		defaults: new { controller = "NewsImage", action = "DeleteNewsImage" }
+	);
+});
+/*sosyal medya*/
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "AdminSosyalMedya",
+		pattern: "AdminSosyalMedya",
+		defaults: new { controller = "SocialMedia", action = "Index" }
+	);
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "sosyalmedyaguncelle",
+		pattern: "sosyalmedyaguncelle/{id}",
+		defaults: new { controller = "SocialMedia", action = "UpdateSocialMedia" }
+	);
 });
 app.Run();

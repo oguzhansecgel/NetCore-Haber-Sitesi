@@ -17,6 +17,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 			_environment = environment;
 		}
 
+		[Route("Adminhabergorsel")]
 		public async Task<IActionResult> Index()
 		{
 
@@ -30,6 +31,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 			}
 			return View();
 		}
+		[Route("habergorselsil{id}")]
 		public async Task<IActionResult> DeleteNewsImage(int id)
 		{
 

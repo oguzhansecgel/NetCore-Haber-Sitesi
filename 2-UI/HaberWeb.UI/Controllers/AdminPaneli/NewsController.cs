@@ -17,7 +17,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
         {
             _httpClientFactory = httpClientFactory;
         }
-
+		[Route("AdminHaber")]
 		public async Task<IActionResult> Index(int page = 1)
         {
             var client = _httpClientFactory.CreateClient();
@@ -40,6 +40,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
             }
             return View();
         }
+		[Route("habersil{id}")]
 		public async Task<IActionResult> DeleteNews(int id)
 		{
 			var client = _httpClientFactory.CreateClient();

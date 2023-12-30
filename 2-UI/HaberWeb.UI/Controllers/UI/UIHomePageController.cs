@@ -15,6 +15,7 @@ namespace HaberWeb.UI.Controllers.UI
             _httpClientFactory = httpClientFactory;
         }
 
+        [Route("")]
         public async Task<IActionResult> Index()
         {
 

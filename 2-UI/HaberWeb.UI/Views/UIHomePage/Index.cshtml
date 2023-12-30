@@ -3,83 +3,7 @@
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/Default/Index.cshtml";
 }
-<style>
-	body {
-		margin: 0;
-		font-family: Arial, sans-serif;
-	}
-
-	.SliderRow {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 445px; /* Yükseklik ayarı */
-		margin-top: 20px;
-		overflow: hidden;
-	}
-
-	#sliderWrapper {
-		position: relative;
-		width: 930px; /* Genişlik ayarı */
-		max-width: 100%;
-		overflow: hidden;
-	}
-
-	.slide {
-		width: 930px; /* Görüntü genişliği */
-		display: none;
-	}
-
-		.slide img {
-			width: 800px;
-			height: 300px; /* Görüntü yüksekliği */
-		}
-
-	.SliderColumn {
-		position: relative;
-	}
-
-	.prev-btn,
-	.next-btn {
-		position: absolute;
-		top: 130px;
-		font-size: 24px;
-		cursor: pointer;
-		color: #333;
-		z-index: 1;
-		transition: background-color 0.3s;
-		padding: 10px;
-		background-color: rgba(169, 169, 169, 0.5);
-		border-radius: 50%;
-	}
-
-	.prev-btn {
-		left: -45px; /* İhtiyaca göre ayarlayabilirsiniz */
-	}
-
-	.next-btn {
-		right: -45px; /* İhtiyaca göre ayarlayabilirsiniz */
-	}
-
-	.font-weight-bold {
-		font-weight: bold;
-	}
-
-	.text-lg-left {
-		font-size: 1.5em;
-	}
-
-	.slider-container {
-		position: relative;
-		width: 100%; /* Tam ekran genişliği */
-		margin: auto;
-	}
-
-	.prev-btn:hover,
-	.next-btn:hover {
-		background-color: #a9a9a9;
-	}
-</style>
+ 
 @*anasayfa*@
 
 
@@ -154,7 +78,7 @@
 										</a>
 									</div>
 									<div class="post-content">
-										<a class="post-category" href="post-category-2.html">@item.CategoryName</a>
+										
 										<h2 class="post-title mt-3">
 											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">@item.NewsTitle</a>
 										</h2>
@@ -178,6 +102,15 @@
 		</div>
 	</div>
 </section>
+
+
+
+
+
+
+
+@*asdasd*@
+@*asdasd*@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
@@ -205,4 +138,8 @@
 	setInterval(function () {
 		changeSlide(1);
 	}, 3000);
+
+
+
+
 </script>

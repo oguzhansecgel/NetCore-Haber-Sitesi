@@ -18,6 +18,7 @@ namespace HaberWeb.UI.Controllers.UI
             _httpClientFactory = httpClientFactory;
         }
 
+        [Route("HaberDetayi")]
         public async Task<IActionResult> SingleContent(int newsID)
         {
 

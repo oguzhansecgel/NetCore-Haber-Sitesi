@@ -36,7 +36,7 @@
 										<td>@item.TwitterURL</td>
 										<td>@item.YoutubeURL</td>
 										<td>@item.FacebookURL</td>
-										<td><a href="/SocialMedia/UpdateSocialMedia/@item.SocialMediaID" class="btn btn-outline-success">Güncelle</a></td>
+										<td><a href="@Url.RouteUrl("sosyalmedyaguncelle",new{id=item.SocialMediaID})" class="btn btn-outline-success">Güncelle</a></td>
 									</tr>
 								}
 							</tbody>

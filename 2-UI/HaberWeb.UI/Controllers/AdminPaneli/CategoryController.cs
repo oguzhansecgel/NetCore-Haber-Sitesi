@@ -13,7 +13,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		{
 			_httpClientFactory = httpClientFactory;
 		}
-
+		[Route("AdminKategori")]
 		public async Task<IActionResult> Index()
 		{
 			var client = _httpClientFactory.CreateClient();
@@ -27,6 +27,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 			}
 			return View();
 		}
+		[Route("kategorisil{id}")]
 		public async Task<IActionResult> DeleteCategory(int id)
 		{
 			var client = _httpClientFactory.CreateClient();

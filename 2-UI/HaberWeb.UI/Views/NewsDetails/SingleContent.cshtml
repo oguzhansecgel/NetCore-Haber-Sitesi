@@ -20,34 +20,8 @@
 								@item.NewsTitle
 							</h2>
 							<p>
-								@{
-									string newsSummary = item.NewsSummary;
-									int maxCharacters = 80;
-									int lineBreakInterval = 90;
-
-									if (newsSummary.Length > maxCharacters)
-									{
-										string truncatedSummary = "";
-										int lineBreakCount = 0;
-
-										for (int i = 0; i < newsSummary.Length; i++)
-										{
-											truncatedSummary += newsSummary[i];
-
-											if (++lineBreakCount == lineBreakInterval)
-											{
-												truncatedSummary += "<br/>";
-												lineBreakCount = 0;
-											}
-										}
-
-										@Html.Raw(truncatedSummary + ".")
-									}
-									else
-									{
-										@newsSummary
-									}
-								}
+	
+								@item.NewsSummary
 							</p>
 						</div>
 						<div class="post-body">
@@ -58,35 +32,8 @@
 								}
 							</div>
 							<div class="entry-content">
-								<p>
-									@{
-										string newsContent = item.NewsContent;
-										int maxCharactersCN = 65;
-										int lineBreakIntervalCN = 65; // Her 40 karakterde bir alt satıra geç
-
-										if (newsContent.Length > maxCharactersCN)
-										{
-											string truncatedSummary = "";
-											int lineBreakCount = 0;
-
-											for (int i = 0; i < newsContent.Length; i++)
-											{
-												truncatedSummary += newsContent[i];
-
-												if (++lineBreakCount == lineBreakInterval)
-												{
-													truncatedSummary += "-<br/>";
-													lineBreakCount = 0;
-												}
-											}
-
-											@Html.Raw(truncatedSummary + ".")
-										}
-										else
-										{
-											@newsContent
-										}
-									}
+								<p>							
+									@item.NewsContent
 								</p>
 								<div class="media mb-4 single-media">
 

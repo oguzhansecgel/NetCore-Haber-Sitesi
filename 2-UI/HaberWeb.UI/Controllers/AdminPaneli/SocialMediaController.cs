@@ -13,7 +13,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		{
 			_httpClientFactory = httpClientFactory;
 		}
-		
+		[Route("AdminSosyalMedya")]
 		public async Task<IActionResult> Index()
 		{
 			var client = _httpClientFactory.CreateClient();
