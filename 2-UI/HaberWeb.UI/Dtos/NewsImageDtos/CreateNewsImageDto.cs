@@ -11,6 +11,7 @@ namespace HaberWeb.UI.Dtos.NewsImageDtos
 	{
 		public int NewsID { get; set; }
 		public IFormFile FileImage { get; set; }
-		
+		public bool ContentImage { get; set; }
+
 	}
 }

@@ -10,7 +10,10 @@ namespace DtoLayer.NewsImage
 	public class UpdateNewsImageDto
 	{
 		public int NewsImageID { get; set; }
-		public IFormFile UploadedImage { get; set; }
-		public int NewsID { get; set; }
+		public string? Path { get; set; }
+		public bool ContentImage { get; set; }
+		public bool ContentImage2 { get; set; }
+
+		public int? NewsID { get; set; }
 	}
 }

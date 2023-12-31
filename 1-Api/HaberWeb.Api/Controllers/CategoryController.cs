@@ -3,6 +3,7 @@ using BusinessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DtoLayer.Category;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,8 @@ namespace HaberWeb.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class CategoryController : ControllerBase
+    [AllowAnonymous]
+    public class CategoryController : ControllerBase
 	{
 		private readonly ICategoryService _categoryService;
 		private readonly IMapper _mapper;

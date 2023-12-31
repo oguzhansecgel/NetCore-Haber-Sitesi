@@ -1,3 +1,7 @@
+using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,10 +9,37 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+
+builder.Services.AddDbContext<Context>();
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddMvc();
+
+
+builder.Services.AddMvc(config =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
+// Configure Identity
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(500);
+    options.LoginPath = "/Login/";
+});
+
 var app = builder.Build();
- 
+
+
+
+
+
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -17,12 +48,13 @@ if (!app.Environment.IsDevelopment())
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
 }
-
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
@@ -85,6 +117,14 @@ app.UseEndpoints(endpoints =>
 		defaults: new { controller = "Category", action = "UpdateCategory" }
 	);
 });
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "AdminKategoriHaberler",
+        pattern: "AdminKategoriHaberler/{id}",
+        defaults: new { controller = "Category", action = "NewsWithCategory" }
+    );
+});
 
 //haberler
 app.UseEndpoints(endpoints =>
@@ -145,6 +185,14 @@ app.UseEndpoints(endpoints =>
 		defaults: new { controller = "NewsImage", action = "DeleteNewsImage" }
 	);
 });
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "habergorselguncelle",
+		pattern: "habergorselguncelle/{id}",
+		defaults: new { controller = "NewsImage", action = "UpdateNewsImage" }
+	);
+});
 /*sosyal medya*/
 app.UseEndpoints(endpoints =>
 {
@@ -161,5 +209,15 @@ app.UseEndpoints(endpoints =>
 		pattern: "sosyalmedyaguncelle/{id}",
 		defaults: new { controller = "SocialMedia", action = "UpdateSocialMedia" }
 	);
+});
+
+/*login */
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "Login",
+        pattern: "Login",
+        defaults: new { controller = "AdminLogin", action = "Index" }
+    );
 });
 app.Run();

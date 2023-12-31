@@ -10,6 +10,8 @@ namespace DtoLayer.NewsImage
 	{
 		public int NewsImageID { get; set; }
 		public string Path { get; set; }
+		public bool ContentImage { get; set; }
+
 		public string NewsTitle { get; set; }
 	}
 }

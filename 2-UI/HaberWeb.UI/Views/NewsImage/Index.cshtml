@@ -19,6 +19,7 @@
 							<th>Haber Başlığı</th>
 							<th>Haber fotoğrafı</th>
 							<th>Sil</th>
+							<th>Güncelle</th>
 						</tr>
 						@foreach (var item in Model)
 						{
@@ -26,6 +27,7 @@
 								<td>@item.NewsTitle</td>
 								<td><img src="https://localhost:7187/@item.Path" alt="" width="109" height="109"></td>
 								<td><a href="@Url.RouteUrl("habergorselsil",new{id=item.NewsImageID})" class="btn mb-1 btn-rounded btn-outline-warning">Görsel Sil</a></td>
+								<td><a href="@Url.RouteUrl("habergorselguncelle",new{id=item.NewsImageID})" class="btn mb-1 btn-rounded btn-outline-warning">Görsel Güncelle</a></td>
 
 							</tr>
 						}

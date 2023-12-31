@@ -18,7 +18,7 @@
 							{
 								<div class="post-block-wrapper post-float clearfix">
 									<div class="post-thumbnail">
-										@foreach (var image in item.NewsImage)
+										@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
 										{
 											<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
 												<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">

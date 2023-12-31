@@ -1,5 +1,6 @@
 ﻿using HaberWeb.UI.Dtos.NewsDtos;
 using HaberWeb.UI.Dtos.NewsImageDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -16,6 +17,7 @@ namespace HaberWeb.UI.Controllers.UI
         }
 
         [Route("")]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
 

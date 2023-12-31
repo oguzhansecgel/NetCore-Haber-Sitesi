@@ -3,13 +3,15 @@ using BusinessLayer.Abstract;
 using DtoLayer.News;
 using DtoLayer.SocialMedia;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HaberWeb.Api.Controllers
 {
 	[Route("api/[controller]")]
-	[ApiController]
+    [AllowAnonymous]
+    [ApiController]
 	public class SocialMediaController : ControllerBase
 	{
 		private readonly ISocialMediaService _socialMediaService;

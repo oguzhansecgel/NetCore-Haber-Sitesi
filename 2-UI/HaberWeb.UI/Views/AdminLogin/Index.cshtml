@@ -1,0 +1,47 @@
+﻿@model LoginDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login Panel</title>
+    <link rel="stylesheet" href="~/newsbit-bootstrap-main/theme/css/login.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form" method="post">
+                <input type="username" placeholder="username" asp-for="Username" />
+                <input type="password" id="password" placeholder="password" asp-for="Password" />
+                <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()"> Şifreyi Göster
+                <button>login</button>
+            </form>
+        </div>
+
+        <script>
+            function togglePasswordVisibility() {
+                var passwordField = document.getElementById("password");
+                var checkbox = document.getElementById("show-password");
+
+                if (checkbox.checked) {
+                    passwordField.type = "text";
+                } else {
+                    passwordField.type = "password";
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
+
+
+<script>
+                        $('.message a').click(function(){
+       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
+</script>

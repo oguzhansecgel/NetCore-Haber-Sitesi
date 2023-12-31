@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using DtoLayer.News;
 using DtoLayer.NewsImage;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,8 @@ namespace HaberWeb.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class NewsImageController : ControllerBase
+    [AllowAnonymous]
+    public class NewsImageController : ControllerBase
 	{
 		private readonly INewsImageService _newsImageService;
 		private readonly IMapper _mapper;
@@ -86,6 +88,18 @@ namespace HaberWeb.Api.Controllers
 
 			}
 			_newsImageService.TDelete(values);
+			return Ok();
+		}
+		[HttpPut]
+		public IActionResult UpdateNewsImage(UpdateNewsImageDto model)
+		{
+			var context = new Context();
+			var newsID = context.NewsImages.Where(x => x.NewsImageID == model.NewsImageID).Select(y => y.NewsID).ToList();
+			model.NewsID = newsID.FirstOrDefault();
+			var newsImagePath = context.NewsImages.Where(x => x.NewsImageID == model.NewsImageID).Select(y => y.Path).ToList();
+			model.Path = newsImagePath.FirstOrDefault();
+			var values = _mapper.Map<NewsImage>(model);
+			_newsImageService.TUpdate(values);
 			return Ok();
 		}
 	}

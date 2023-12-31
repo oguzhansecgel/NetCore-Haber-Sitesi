@@ -2,6 +2,7 @@
 using HaberWeb.UI.Dtos.CategoryDtos;
 using HaberWeb.UI.Dtos.NewsDtos;
 using HaberWeb.UI.Dtos.NewsImageDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -20,6 +21,7 @@ namespace HaberWeb.UI.Controllers.UI
 
 
         [Route("Haberler")]
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int categoryID)
         {
 

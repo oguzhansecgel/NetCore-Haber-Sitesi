@@ -21,7 +21,7 @@
 								<a data-headlinenumber="1" href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })"
 								   title="@item.NewsTitle"
 								   target="_blank">
-									@foreach (var image in item.NewsImage)
+									@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
 									{
 										<img class="shi img-fluid" src="https://localhost:7187/@image.Path"
 											 alt="@item.NewsTitle">
@@ -69,7 +69,7 @@
 								<div class="post-block-wrapper post-grid-view clearfix">
 									<div class="post-thumbnail">
 										<a href="single-post.html">
-											@foreach (var image in item.NewsImage)
+											@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
 											{
 												<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
 													<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">

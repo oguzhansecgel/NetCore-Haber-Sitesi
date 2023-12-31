@@ -1,6 +1,7 @@
 ﻿using HaberWeb.UI.Dtos.CategoryDtos;
 using HaberWeb.UI.Dtos.NewsDtos;
 using HaberWeb.UI.Dtos.NewsImageDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -14,8 +15,8 @@ namespace HaberWeb.UI.ViewComponents.Default
 		{
 			_httpClientFactory = httpClientFactory;
 		}
-
-		public async Task<IViewComponentResult> InvokeAsync()
+        [AllowAnonymous]
+        public async Task<IViewComponentResult> InvokeAsync()
 		{
 			var client = _httpClientFactory.CreateClient();
 			var responserMessage = await client.GetAsync("https://localhost:7187/api/News/ListNewsWithCategory");

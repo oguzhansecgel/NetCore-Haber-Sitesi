@@ -1,4 +1,5 @@
-﻿<div class="sidebar">
+﻿@model List<ResultNewsWithCategoryDto>
+<div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<div class="user">			
 			<div class="info">
@@ -24,12 +25,12 @@
 					<p>Kategoriler</p>
 				</a>
 			</li>
-			<li class="nav-item">
+@* 			<li class="nav-item">
 				<a href="@Url.RouteUrl("AdminHaber")">
 					<i class="la la-comment"></i>
 					<p>Haberler</p>
 				</a>
-			</li>
+			</li> *@
 			<li class="nav-item">
 				<a href="@Url.RouteUrl("Adminhabergorsel")">
 					<i class="la la-th"></i>
@@ -41,6 +42,16 @@
 					<i class="la la-internet-explorer"></i>
 					<p>Sosyal Medya Linkler</p>
 				</a>
+			</li>
+			<li class="nav-item">
+				@foreach (var item in Model)
+				{
+					<a href="@Url.RouteUrl("AdminKategoriHaberler", new { id = item.CategoryID})">
+						<i class="la la-navicon"></i>
+						<p>@item.CategoryName</p>
+					</a>
+				}
+				
 			</li>
 		</ul>
 	</div>

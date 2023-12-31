@@ -1,4 +1,5 @@
 ﻿using HaberWeb.UI.Dtos.SocialMedia;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace HaberWeb.UI.ViewComponents.Default
         {
             _httpClientFactory = httpClientFactory;
         }
+        [AllowAnonymous]
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();

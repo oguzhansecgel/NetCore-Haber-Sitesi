@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using DtoLayer.Category;
 using DtoLayer.News;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,8 @@ namespace HaberWeb.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class NewsController : ControllerBase
+    [AllowAnonymous]
+    public class NewsController : ControllerBase
 	{
 		private readonly INewsService _newsService;
 
@@ -51,7 +53,6 @@ namespace HaberWeb.Api.Controllers
 			});
 			return Ok(values.ToList());
 		}
- 
 		[HttpDelete("{id}")]
 		public IActionResult DeleteNews(int id) 
 		{ 

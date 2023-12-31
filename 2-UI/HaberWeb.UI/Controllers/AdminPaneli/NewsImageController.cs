@@ -1,6 +1,8 @@
-﻿using HaberWeb.UI.Dtos.NewsImageDtos;
+﻿using DataAccessLayer.Concrete;
+using HaberWeb.UI.Dtos.NewsImageDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace HaberWeb.UI.Controllers.AdminPaneli
 {
@@ -94,6 +96,38 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 					}
 				}
 
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> UpdateNewsImage(int id)
+		{
+			var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.GetAsync($"https://localhost:7187/api/NewsImage/{id}");
+			if (responseMessage.IsSuccessStatusCode)
+			{
+				var jsonData = await responseMessage.Content.ReadAsStringAsync();
+				var values = JsonConvert.DeserializeObject<UpdateNewsImageDto>(jsonData);
+				return View(values);
+			}
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> UpdateNewsImage(UpdateNewsImageDto model)
+		{
+			var context = new Context();
+			var newsID = context.NewsImages.Where(x => x.NewsImageID == model.NewsImageID).Select(y => y.NewsID).ToList();
+			model.NewsID = newsID.FirstOrDefault();
+			var newsImagePath = context.NewsImages.Where(x => x.NewsImageID == model.NewsImageID).Select(y => y.Path).ToList();
+			model.Path = newsImagePath.FirstOrDefault();
+			var client = _httpClientFactory.CreateClient();
+			var jsonData = JsonConvert.SerializeObject(model);
+			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+			var responseMessage = await client.PutAsync("https://localhost:7187/api/NewsImage", stringContent);
+			if (responseMessage.IsSuccessStatusCode)
+			{
+				return RedirectToAction("Index");
+			}
+			return View();
 		}
 
 	}
