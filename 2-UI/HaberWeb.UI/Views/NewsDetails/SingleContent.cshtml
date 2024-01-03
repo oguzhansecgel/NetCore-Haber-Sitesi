@@ -5,56 +5,55 @@
 }
 
 <section class="block-wrapper no-sidebar">
-	<div class="container">
+    <div class="container">
 
-		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="single-post">
-					@foreach (var item in Model)
-					{
-						<div class="post-header mb-5 text-center">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="single-post">
+                    @foreach (var item in Model)
+                    {
+                        <div class="post-header mb-5 text-center">
 
-								<a class="post-category " href="@Url.Action("Index", "HomePage", new { categoryID = item.CategoryID })">İlgili Kategoriye Git</a>
-								<p style="font-size:13px">@item.NewsEnterTime</p>
-							<h1 class="post-title">
-								@item.NewsTitle
-							</h1>
-							<p>
-	
-								@item.NewsSummary
-							</p>
-						</div>
-						<div class="post-body">
-							<div class="post-featured-image">
-								@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
-								{
-									<img height="500px" width="750px" src="https://localhost:7187/@image.Path" class="" alt="featured-image">
-								}
-							</div>
-							<div class="entry-content">
-								<p>							
-									@item.NewsContent
-								</p>
-								<h4>@item.NewsContentTitle</h4>
-								<p>@item.NewsContent2</p>
-								@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==true))
-								{	<div class="text-center">
-									<img height="400px" width="550px" src="https://localhost:7187/@image.Path" class="" alt="featured-image" style="margin-bottom:30px;margin-top:30px">
-									</div>
-								}
-								<h4>@item.NewsContentTitle2</h4>
-								<p>@item.NewsContent3</p>
-								<div class="media mb-4 single-media">
+                            <a class="post-category " href="@Url.Action("Index", "HomePage", new { categoryID = item.CategoryID })">İlgili Kategoriye Git</a>
+                            <p style="font-size:13px">@item.NewsEnterTime</p>
+                            <h1 class="post-title">
+                                @item.NewsTitle
+                            </h1>
+                            <p>
 
-									<div class="media-body">
-									</div>
-								</div>
-							</div>
-						</div>
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+                                @item.NewsSummary
+                            </p>
+                        </div>
+                        <div class="post-body">
+                            <div class="post-featured-image">
+                                @foreach (var image in item.NewsImage.Where(x => x.ContentImage == false))
+                                {
+                                    <img height="500px" width="750px" src="https://api.vatan19tv.com/@image.Path" class="" alt="featured-image">
+                                }
+ 
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    @item.NewsContent
+                                </p>
+                                @foreach (var image in item.NewsImage.Where(x => x.ContentImage == true))
+                                {
+                                    <div class="text-center">
+                                        <img height="400px" width="550px" src="https://api.vatan19tv.com/@image.Path" class="" alt="featured-image" style="margin-bottom:30px;margin-top:30px">
+                                    </div>
+                                }
+                                <div class="media mb-4 single-media">
+
+                                    <div class="media-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v18.0" nonce="CQryk6rv"></script>

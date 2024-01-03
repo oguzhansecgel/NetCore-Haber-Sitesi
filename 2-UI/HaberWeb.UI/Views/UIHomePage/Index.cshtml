@@ -23,7 +23,7 @@
 								   target="_blank">
 									@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
 									{
-										<img class="shi img-fluid" src="https://localhost:7187/@image.Path"
+										<img class="shi img-fluid" src="https://api.vatan19tv.com/@image.Path"
 											 alt="@item.NewsTitle">
 									}
 								</a>
@@ -72,7 +72,7 @@
 											@foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
 											{
 												<a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
-													<img class="img-fluid" src="https://localhost:7187/@image.Path" alt="post-thumbnail">
+													<img class="img-fluid" src="https://api.vatan19tv.com/@image.Path" alt="post-thumbnail">
 												</a>
 											}
 										</a>

@@ -19,8 +19,8 @@ namespace HaberWeb.UI.ViewComponents.Default
         public async Task<IViewComponentResult> InvokeAsync()
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responserMessage = await client.GetAsync("https://localhost:7187/api/News/ListNewsWithCategory");
-            var responserMessage2 = await client.GetAsync($"https://localhost:7187/api/NewsImage");
+			var responserMessage = await client.GetAsync("https://api.vatan19tv.com/api/News/ListNewsWithCategory");
+            var responserMessage2 = await client.GetAsync($"https://api.vatan19tv.com/api/NewsImage");
             if (responserMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responserMessage.Content.ReadAsStringAsync();

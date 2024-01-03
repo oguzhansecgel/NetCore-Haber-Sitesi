@@ -41,10 +41,10 @@
 
                                 <div class="post-block-wrapper post-grid-view clearfix text-center">
                                     <div class="post-thumbnail thumb-float-style">
-                                        @foreach (var image in item.NewsImage)
+                                        @foreach (var image in item.NewsImage.Where(x=>x.ContentImage==false))
                                         {
                                             <a href="@Url.Action("SingleContent", "NewsDetails", new { newsID = item.NewsID })">
-                                                <img class="img-fluid mb-3" src="https://localhost:7187/@image.Path" alt="" width="250px" height="166px">
+                                                <img class="img-fluid mb-3" src="https://api.vatan19tv.com/@image.Path" alt="" width="250px" height="166px">
                                             </a>
                                         }
                                     </div>

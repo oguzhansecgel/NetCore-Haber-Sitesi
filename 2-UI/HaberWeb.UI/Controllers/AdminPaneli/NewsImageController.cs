@@ -2,6 +2,7 @@
 using HaberWeb.UI.Dtos.NewsImageDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Text;
 
 namespace HaberWeb.UI.Controllers.AdminPaneli
@@ -11,20 +12,22 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		private readonly IHttpClientFactory _httpClientFactory;
 		private readonly IConfiguration _configuration;
 		private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
+		private readonly Context _context;
 
-		public NewsImageController(IHttpClientFactory httpClientFactory, IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
-		{
-			_httpClientFactory = httpClientFactory;
-			_configuration = configuration;
-			_environment = environment;
-		}
+        public NewsImageController(IHttpClientFactory httpClientFactory, IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment, Context context)
+        {
+            _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _environment = environment;
+            _context = context;
+        }
 
-		[Route("Adminhabergorsel")]
+        [Route("Adminhabergorsel")]
 		public async Task<IActionResult> Index()
 		{
 
 			var client = _httpClientFactory.CreateClient();
-			var responserMessage = await client.GetAsync("https://localhost:7187/api/NewsImage/ListNewsImageWithNews");
+			var responserMessage = await client.GetAsync("https://api.vatan19tv.com/api/NewsImage/ListNewsImageWithNews");
 			if (responserMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responserMessage.Content.ReadAsStringAsync();
@@ -37,12 +40,12 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		public async Task<IActionResult> DeleteNewsImage(int id)
 		{
 
-			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.DeleteAsync($"https://localhost:7187/api/NewsImage/{id}");
+            var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.DeleteAsync($"https://api.vatan19tv.com/api/NewsImage/{id}");
 
 			if (responseMessage.IsSuccessStatusCode)
 			{
-				return RedirectToAction("Index","News");
+                return RedirectToAction("Index","News");
 			}
 			return View();
 
@@ -52,7 +55,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		public async Task<IActionResult> CreateNewsImage(int id)
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync($"https://localhost:7187/api/News/{id}");
+			var responseMessage = await client.GetAsync($"https://api.vatan19tv.com/api/News/{id}");
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -83,7 +86,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 							formData.Add(byteArrayContent, "UploadedImage", model.FileImage.FileName);
 						}
 
-						var response = await httpclient.PostAsync("https://localhost:7187/api/NewsImage", formData);
+						var response = await httpclient.PostAsync("https://api.vatan19tv.com/api/NewsImage", formData);
 
 						if (response.IsSuccessStatusCode)
 						{
@@ -102,7 +105,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		public async Task<IActionResult> UpdateNewsImage(int id)
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync($"https://localhost:7187/api/NewsImage/{id}");
+			var responseMessage = await client.GetAsync($"https://api.vatan19tv.com/api/NewsImage/{id}");
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -122,7 +125,9 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(model);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-			var responseMessage = await client.PutAsync("https://localhost:7187/api/NewsImage", stringContent);
+			var responseMessage = await client.PutAsync("https://api.vatan19tv.com" +
+				"" +
+				"/api/NewsImage", stringContent);
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				return RedirectToAction("Index");

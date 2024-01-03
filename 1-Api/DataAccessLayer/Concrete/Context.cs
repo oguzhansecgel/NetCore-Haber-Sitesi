@@ -13,9 +13,10 @@ namespace DataAccessLayer.Concrete
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("server=DESKTOP-3QG9GTV;initial catalog = CorumHaber; integrated security=true");
+			optionsBuilder.UseSqlServer("Server=mssql03.trwww.com;database=vatantvc_db1;user=vatantv;password=Ferdi19.#");
+
 		}
-		public DbSet<News> Newses { get; set; }
+        public DbSet<News> Newses { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<NewsImage> NewsImages{ get; set; }
 		public DbSet<SocialMedia> SocialMedias{ get; set; }

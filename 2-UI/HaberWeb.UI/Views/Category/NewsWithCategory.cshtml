@@ -24,12 +24,8 @@
                                 <tr>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">#</th>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">Haber Başlığı</th>
-                                    <th scope="col" style="max-width: 100px; max-height: 150px">Haber İçerik Bağlığı</th>
-                                    <th scope="col" style="max-width: 100px; max-height: 150px">Haber İçerik Bağlığı</th>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">Haber Özeti</th>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">Haber İçeriği</th>
-                                    <th scope="col" style="max-width: 100px; max-height: 150px">Haber İçeriği 2 </th>
-                                    <th scope="col" style="max-width: 100px; max-height: 150px">Haber İçeriği 3 </th>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">Haber Yazılış Saati</th>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">Kategorisi</th>
                                     <th scope="col" style="max-width: 100px; max-height: 150px">Sil</th>
@@ -45,13 +41,9 @@
                                     <tr>
                                         
                                         <th style="max-width: 100px; max-height: 150px">@count</th>
-                                        <td style="max-width: 100px; max-height: 150px">@(item.NewsTitle.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." : @item.NewsTitle)</td>
-                                        <td style="max-width: 100px; max-height: 150px">@(item.NewsContentTitle != null ? item.NewsContentTitle.Length > 25 ? item.NewsContentTitle.Substring(0, 25) + "..." : item.NewsContentTitle : "<p>boş</p>")</td>
-                                        <td style="max-width: 100px; max-height: 150px"> @(item.NewsContentTitle2 != null ? item.NewsContentTitle2.Length > 25 ? item.NewsContentTitle2.Substring(0, 25) + "..." : item.NewsContentTitle2 : "<p>boş</p>")</td>
+                                        <td style="max-width: 100px; max-height: 150px">@(item.NewsTitle.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." : @item.NewsTitle)</td>                                   
                                         <td style="max-width: 100px; max-height: 150px">@(item.NewsSummary.Length > 25 ? item.NewsSummary.Substring(0, 25) + "..." : @item.NewsSummary)</td>
-                                        <td style="max-width: 100px; max-height: 150px">@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." : @item.NewsContent)</td>
-                                        <td style="max-width: 100px; max-height: 150px"> @(item.NewsContent2 != null ? item.NewsContent2.Length > 25 ? item.NewsContent2.Substring(0, 25) + "..." : item.NewsContent2 : "<p>boş</p>")</td>
-                                        <td style="max-width: 100px; max-height: 150px">@(item.NewsContent3 != null ? item.NewsContent3.Length > 25 ? item.NewsContent3.Substring(0, 25) + "..." : item.NewsContent3 : "<p>boş</p>")</td>
+                                        <td style="max-width: 100px; max-height: 150px">@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." : @item.NewsContent)</td>                                      
                                         <td style="max-width: 100px; max-height: 150px">@item.NewsEnterTime</td>
                                         <td style="max-width: 100px; max-height: 150px">@item.CategoryName</td>
                                         <td style="max-width: 100px; max-height: 150px"><a href="@Url.RouteUrl("habersil",new{id=item.NewsID})" class="btn btn-outline-danger">Sil</a></td>
@@ -68,7 +60,7 @@
                                                 <td style="max-width: 100px; max-height: 150px">
                                                     <div class="d-flex flex-column align-items-center">
                                                         <a href="@Url.RouteUrl("habergorselguncelle",new{id=image.NewsImageID})">
-                                                            <img src="https://localhost:7187/@image.Path" height="75px" width="75px" />
+                                                            <img src="https://api.vatan19tv.com/@image.Path" height="75px" width="75px" />
 
                                                         </a>
                                                         <a href="@Url.RouteUrl("habergorselsil",new{id=image.NewsImageID})" class="btn btn-outline-danger mt-2">Resimi Sil</a>

@@ -1,9 +1,11 @@
 ﻿using HaberWeb.UI.Dtos.SocialMedia;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace HaberWeb.UI.ViewComponents.Default
 {
+    [AllowAnonymous]
     public class _UIFooterPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -15,7 +17,7 @@ namespace HaberWeb.UI.ViewComponents.Default
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responserMessage = await client.GetAsync("https://localhost:7187/api/SocialMedia");
+            var responserMessage = await client.GetAsync("https://api.vatan19tv.com/api/SocialMedia");
             if (responserMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responserMessage.Content.ReadAsStringAsync();

@@ -26,9 +26,10 @@ namespace HaberWeb.UI.Controllers.UI
         {
 
             var client = _httpClientFactory.CreateClient();
-            var responserMessage = await client.GetAsync("https://localhost:7187/api/Category/news" + categoryID);
-            var responserMessage2 = await client.GetAsync($"https://localhost:7187/api/NewsImage");
-            var responserMessage3 = await client.GetAsync($"https://localhost:7187/api/Category");
+            var responserMessage = await client.GetAsync("https://api.vatan19tv.com/api/Category/news" + categoryID);
+            var responserMessage2 = await client.GetAsync($"https://api.vatan19tv.com" +
+                $"/api/NewsImage");
+            var responserMessage3 = await client.GetAsync($"https://api.vatan19tv.com/api/Category");
             if (responserMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responserMessage.Content.ReadAsStringAsync();

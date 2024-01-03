@@ -17,7 +17,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		public async Task<IActionResult> Index()
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("https://localhost:7187/api/SocialMedia");
+			var responseMessage = await client.GetAsync("https://api.vatan19tv.com/api/SocialMedia");
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -31,7 +31,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 		public async Task<IActionResult> UpdateSocialMedia(int id)
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync($"https://localhost:7187/api/SocialMedia/{id}");
+			var responseMessage = await client.GetAsync($"https://api.vatan19tv.com/api/SocialMedia/{id}");
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -46,7 +46,7 @@ namespace HaberWeb.UI.Controllers.AdminPaneli
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(updateSocialMediaDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-			var responseMessage = await client.PutAsync("https://localhost:7187/api/SocialMedia/", stringContent);
+			var responseMessage = await client.PutAsync("https://api.vatan19tv.com/api/SocialMedia/", stringContent);
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				return RedirectToAction("Index");

@@ -54,7 +54,7 @@ namespace HaberWeb.Api.Controllers
 		[HttpPost]
 		public IActionResult AddNewsImage([FromForm] CreateNewsImageDto model)
 		{
-
+			
 			var date = DateTime.Now;
 			var extension = Path.GetExtension(model.UploadedImage.FileName);
 			var fileName = $"{date.Day}_{date.Month}_{date.Year}_{date.Hour}_{date.Minute}_{date.Second}_{date.Millisecond}{extension}";
