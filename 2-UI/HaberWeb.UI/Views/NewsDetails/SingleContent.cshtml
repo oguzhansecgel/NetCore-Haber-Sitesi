@@ -1,17 +1,22 @@
 ﻿@model List<ResultNewsDto>
 @{
-    
-    var selectedNews = Model.FirstOrDefault(); // veya seçmek istediğiniz başka bir kritere göre belirleyin
 
-    if (selectedNews != null)
+
     {
-        ViewData["Title"] = selectedNews.NewsTitle;
-        ViewData["ogDescription"] = selectedNews.NewsSummary;
-        // ViewData["ogImage"] = selectedNews.ImageUrl;
-        ViewData["url"] = $"https://www.vatan19tv.com/HaberDetayi?newsID={selectedNews.NewsID}";
-    }
+        @foreach (var item in Model)
+        {
+            ViewData["Title"] = item.NewsTitle;
+            @foreach (var image in item.NewsImage)
+            {
+                ViewData["ogImage"] = "https://api.vatan19tv.com/@image.Path";
 
-    Layout = "~/Views/Default/Index.cshtml";
+            }
+        }
+
+
+
+        Layout = "~/Views/Default/Index.cshtml";
+    }
 }
 
 <section class="block-wrapper no-sidebar">
@@ -39,16 +44,22 @@
                                 @foreach (var image in item.NewsImage.Where(x => x.ContentImage == false))
                                 {
                                     <img height="500px" width="750px" src="https://api.vatan19tv.com/@image.Path" class="" alt="featured-image" data-newsimage="https://api.vatan19tv.com/@image.Path">
+                                    <div id="fb-root">
+                                        <div class="fb-share-button"
+                                             data-href="https://www.vatan19tv.com/HaberDetayi?newsID=@item.NewsID"
+                                             data-image="https://api.vatan19tv.com/path/@image.Path"
+                                             data-layout=""
+                                             data-size="">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.vatan19tv.com%2FHaberDetayi%3FnewsID%3D@item.NewsID&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a>
+                                        </div>
+                                    </div>
+
                                 }
 
-                                
+
                             </div>
-                            <div class="fb-share-button" data-href="https://www.vatan19tv.com/HaberDetayi?newsID=@item.NewsID" data-layout="" data-size="">
-                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.vatan19tv.com%2FHaberDetayi%3FnewsID%3D2097&amp;
-                                        src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                                    Paylaş
-                                </a>
-                            </div>
+
+
                             <div class="entry-content">
                                 <p>
                                     @item.NewsContent
@@ -72,5 +83,5 @@
         </div>
     </div>
 </section>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v18.0" nonce="a6GfdM36"></script>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v18.0" nonce="XkAwVPZK"></script>
