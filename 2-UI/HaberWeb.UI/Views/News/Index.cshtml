@@ -48,7 +48,9 @@
                                         <td style="max-width: 100px; max-height: 150px">@(item.NewsContent.Length > 25 ? item.NewsContent.Substring(0, 25) + "..." : @item.NewsContent)</td>
                                         <td style="max-width: 100px; max-height: 150px">@item.NewsEnterTime</td>
                                         <td style="max-width: 100px; max-height: 150px">@item.CategoryName</td>
-                                        <td style="max-width: 100px; max-height: 150px"><a href="@Url.RouteUrl("habersil",new{id=item.NewsID})" class="btn btn-outline-danger">Sil</a></td>
+                                        <td style="max-width: 100px; max-height: 150px">
+                                            <a href="@Url.RouteUrl("habersil",new{id=item.NewsID})" class="btn btn-outline-danger" data-ajax-url="@Url.RouteUrl("habersil", new { id = item.NewsID })" data-ajax-method="delete">Sil</a>
+                                        </td>
                                         <td style="max-width: 100px; max-height: 150px"><a href="@Url.RouteUrl("haberguncelle",new{id=item.NewsID})" class="btn btn-outline-success">Güncelle</a></td>
                                         <td style="max-width: 100px; max-height: 150px"><a href="@Url.RouteUrl("habergorselekle",new{id=item.NewsID})" class="btn btn-outline-info">Resim Ekle</a></td>
 
@@ -90,3 +92,28 @@
 </div>
 
 
+<script>
+    $(document).ready(function () {
+        $(".btn-outline-danger").click(function (e) {
+            e.preventDefault(); // Sayfa yenilenmesini önleyin
+
+            var url = $(this).data("ajax-url");
+            var method = $(this).data("ajax-method");
+
+            // AJAX isteğini gönderin
+            $.ajax({
+                url: url,
+                method: method,
+                success: function (response) {
+                    if (response.success) {
+                        // Silme işlemi başarılıysa, ilgili satırı tablodan kaldırın
+                        $(this).closest("tr").remove();
+                    } else {
+                        // Hata mesajını gösterin
+                        alert(response.message);
+                    }
+                }
+            });
+        });
+    });
+</script>
